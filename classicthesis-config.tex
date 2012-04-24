@@ -80,8 +80,41 @@
 %\PassOptionsToPackage{spanish,es-lcroman}{babel}
  \usepackage{babel}					
 
-\PassOptionsToPackage{square,numbers}{natbib}
- \usepackage{natbib}				
+%\PassOptionsToPackage{square,numbers}{natbib}
+% \usepackage{natbib}	
+
+\PassOptionsToPackage{%
+    style=authoryear-comp,%
+    bibstyle=authoryear,
+    %ibidtracker=strict,
+    %opcittracker=strict,
+    %loccittracker=strict,
+    sortcites=true,%
+    sorting=nyt,%
+    block=space,%
+    backref=true,%
+    labelnumber=true,
+    maxcitenames=1,
+    uniquename=full,
+    uniquelist=false,
+    backend=biber%
+}{biblatex}
+\RequirePackage{biblatex}
+\DefineBibliographyExtras{american}{\stdpunctuation} % logical punctuation
+\setlength{\bibitemsep}{1ex}
+%\setlength{\bibhang}{0pt}
+\bibliography{Bibliography}
+
+% suppress et al for text citations (only first author and year)
+\renewbibmacro*{name:andothers}{} 
+\AtBeginBibliography{% 
+\renewbibmacro*{name:andothers}{% 
+\ifthenelse{\value{listcount}=\value{liststop}\AND 
+\ifmorenames} 
+{\ifnum\value{liststop}>1 \finalandcomma\fi 
+\andothersdelim\bibstring{andothers}} 
+{}}}
+
 
 \PassOptionsToPackage{fleqn}{amsmath}		% math environments and more by the AMS 
  \usepackage{amsmath}
