@@ -18,6 +18,15 @@
 \clearpage
 
 \begingroup 
+
+    \renewcommand{\lstlistlistingname}{Listings}
+    \renewcommand*\listfigurename{Figures}
+    \renewcommand*\listoflofname{\listfigurename}
+    \renewcommand*\listoflofentryname\relax
+    \renewcommand*\listtablename{Tables}
+    \renewcommand*\listoflotname{\listtablename}
+    \renewcommand*\listoflotentryname\relax
+
     \let\clearpage\relax
     \let\cleardoublepage\relax
     \let\cleardoublepage\relax
@@ -30,7 +39,7 @@
     \pdfbookmark[1]{\listfigurename}{lof}
     \listoffigures
 
-    \vspace*{8ex}
+    \newpage
 
     %*******************************************************
     % List of Tables
@@ -41,19 +50,19 @@
     \pdfbookmark[1]{\listtablename}{lot}
     \listoftables
         
-    \vspace*{8ex}
-%   \newpage
+    \newpage
     
     %*******************************************************
     % List of Listings
     %*******************************************************      
-	  %\phantomsection 
-    \refstepcounter{dummy}
-    %\addcontentsline{toc}{chapter}{\lstlistlistingname}
-    \pdfbookmark[1]{\lstlistlistingname}{lol}
-    \lstlistoflistings 
+    %% \phantomsection
+    % \refstepcounter{dummy}
 
-    \vspace*{8ex}
+    %% \addcontentsline{toc}{chapter}{\lstlistlistingname}
+    % \pdfbookmark[1]{\lstlistlistingname}{lol}
+    % \lstlistoflistings
+
+    \newpage
        
     %*******************************************************
     % Acronyms
