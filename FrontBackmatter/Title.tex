@@ -1,0 +1,60 @@
+%*******************************************************
+% Titlepage
+%*******************************************************
+\begin{titlepage}
+	% if you want the titlepage to be centered, uncomment and fine-tune the line below (KOMA classes environment)
+	\begin{addmargin}[-1cm]{-3cm}
+    \begin{center}
+        \large  
+
+        \hfill
+
+        \vfill
+
+        \begingroup
+            \spacedlowsmallcaps{\myName}\\[0.35cm]
+            \color{Maroon}\spacedallcaps{\myTitle}\\
+            \Large\itshape\mySubtitle \vspace{10cm}
+        \endgroup
+
+        \vfill                      
+
+    \end{center}  
+  \end{addmargin}       
+\end{titlepage}
+
+
+% titleback
+\thispagestyle{empty}
+
+\noindent\includegraphics[width=4cm]{gfx/rwth_sw}
+
+\hfill
+
+\vfill
+
+\noindent\myName. \textit{\myTitle.}
+
+\medskip
+
+\noindent \myDegree\ at \myFaculty.
+
+\medskip
+
+\noindent\spacedlowsmallcaps{Submitted on \mySubmDate}
+
+\bigskip\bigskip\bigskip\bigskip
+
+\noindent\spacedlowsmallcaps{Thesis Advisor} \\
+\myProf
+
+\medskip
+
+\noindent\spacedlowsmallcaps{Second Reviewer} \\
+\myOtherProf
+
+\bigskip
+
+\noindent\spacedlowsmallcaps{Supervisors} \\
+\mySupervisor\\
+\myOtherSupervisor
