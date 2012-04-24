@@ -16,7 +16,7 @@
 % ****************************************************************************************************
 \PassOptionsToPackage{eulerchapternumbers,listings,drafting,%
 				 pdfspacing,%floatperchapter,%linedheaders,%
-				 subfig,beramono,eulermath,parts}{classicthesis}										
+				 subfig,beramono,minionpro,minionprospacing,dottedtoc}{classicthesis}										
 % ********************************************************************
 % Available options for classicthesis.sty 
 % (see ClassicThesis.pdf for more information):
@@ -41,13 +41,13 @@
 % ****************************************************************************************************
 \newcommand{\myTitle}{A Classic Thesis Style\xspace}
 \newcommand{\mySubtitle}{An Homage to The Elements of Typographic Style\xspace}
-\newcommand{\myDegree}{Doktor-Ingenieur (Dr.-Ing.)\xspace}
+\newcommand{\myDegree}{Master Thesis\xspace}
 \newcommand{\myName}{Andr\'e Miede\xspace}
 \newcommand{\myProf}{Put name here\xspace}
 \newcommand{\myOtherProf}{Put name here\xspace}
 \newcommand{\mySupervisor}{Put name here\xspace}
+\newcommand{\myOtherSupervisor}{Put name here\xspace}
 \newcommand{\myFaculty}{Put data here\xspace}
-\newcommand{\myDepartment}{Put data here\xspace}
 \newcommand{\myUni}{Put data here\xspace}
 \newcommand{\myLocation}{Darmstadt\xspace}
 \newcommand{\myTime}{December 2011\xspace}
@@ -72,13 +72,16 @@
 % ******************************************************************** 
 % Packages with options that might require adjustments
 % ******************************************************************** 
-\PassOptionsToPackage{latin9}{inputenc}	% latin9 (ISO-8859-9) = latin1+"Euro sign"
+\PassOptionsToPackage{utf8}{inputenc}	% latin9 (ISO-8859-9) = latin1+"Euro sign"
  \usepackage{inputenc}				
 
-%\PassOptionsToPackage{ngerman,american}{babel}   % change this to your language(s)
+\PassOptionsToPackage{american}{babel}   % change this to your language(s)
 % Spanish languages need extra options in order to work with this template
 %\PassOptionsToPackage{spanish,es-lcroman}{babel}
- \usepackage{babel}					
+ \usepackage{babel}
+ 
+\PassOptionsToPackage{german=guillemets}{csquotes}
+ \usepackage{csquotes}
 
 %\PassOptionsToPackage{square,numbers}{natbib}
 % \usepackage{natbib}	
@@ -99,7 +102,7 @@
     uniquelist=false,
     backend=biber%
 }{biblatex}
-\RequirePackage{biblatex}
+\usepackage{biblatex}
 \DefineBibliographyExtras{american}{\stdpunctuation} % logical punctuation
 \setlength{\bibitemsep}{1ex}
 %\setlength{\bibhang}{0pt}
@@ -119,19 +122,85 @@
 \PassOptionsToPackage{fleqn}{amsmath}		% math environments and more by the AMS 
  \usepackage{amsmath}
 
+\usepackage{mathabx} % for the dlsh symbol.
+
+
 % ******************************************************************** 
 % General useful packages
 % ******************************************************************** 
 \PassOptionsToPackage{T1}{fontenc} % T2A for cyrillics
-	\usepackage{fontenc}                 
+	\usepackage{fontenc}            
+	\usepackage{textcomp}     
 \usepackage{xspace} % to get the spacing after macros right  
 \usepackage{mparhack} % get marginpar right
 \usepackage{fixltx2e} % fixes some LaTeX stuff 
-\PassOptionsToPackage{printonlyused,smaller}{acronym}
+\PassOptionsToPackage{printonlyused}{acronym} %smaller
 	\usepackage{acronym} % nice macros for handling all acronyms in the thesis
 %\renewcommand*{\acsfont}[1]{\textssc{#1}} % for MinionPro
+
+%% used for having spaced small caps as acronyms
+% \makeatletter 
+% \renewcommand*{\AC@hyperlink}[2]{% 
+% \hyper@@link{}{#1}{\textssc{\lowercase{#2}}}} 
+% \renewcommand*{\AC@acro}[1]{% 
+% \@ifnextchar[{\AC@@acro{#1}}{\AC@@acro{#1}[\textssc{\lowercase{#1}}]}} 
+% \makeatother
+
+\newcommand{\nara}[1]{#1} % = not a real acronym / if you change the styling of the \acro acronyms
+                          % make sure that all your other acronyms can be changed in one place as
+                          % well
+                          
 \renewcommand{\bflabel}[1]{{#1}\hfill} % fix the list of acronyms
+
+\usepackage{numprint} % pretty print numbers with decimal and thousands sep
+\usepackage{framed}
+
+\usepackage{layouts}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{titletoc}
+
+\usepackage{highlighter}
+\usepackage{relsize} % scale font up or down
+
 % ****************************************************************************************************
+
+
+
+% ********************************************************************
+% Commands
+% ********************************************************************
+\newcounter{dummy} % necessary for correct hyperlinks (to index, bib, etc.)
+\newcommand{\longpage}{\enlargethispage{3\baselineskip}}
+\newcommand{\medpage}{\enlargethispage{2\baselineskip}}
+\newcommand{\shortpage}{\enlargethispage{\baselineskip}}
+\newcommand{\concskip}{\medskip}
+\newcommand{\myPrimRef}[1]{\textit{#1}} % how primary index entries will be marked
+% ********************************************************************
+\newcommand{\ie}{i.\,e.}
+\newcommand{\Ie}{I.\,e.}
+\newcommand{\eg}{e.\,g.}
+\newcommand{\Eg}{E.\,g.}
+\newcommand{\zb}{z.\,B.}
+\newcommand{\etAl}{et al.\xspace}
+\newcommand{\twod}{2\textsc{d}\xspace}
+\newcommand{\threed}{3\textsc{d}\xspace}
+% ********************************************************************
+\newcommand{\system}[1]{\emph{#1}}
+\newcommand{\person}[1]{#1}
+\newcommand{\httpmethod}[1]{#1}
+\newcommand{\term}[1]{\emph{#1}}
+\newcommand{\role}[1]{#1} %textsc
+\newcommand{\cauthor}[1]{\relax}
+\newcommand{\tableheadline}[1]{\multicolumn{1}{c}{\spacedlowsmallcaps{#1}}}
+% ********************************************************************
+\newcommand{\RA}{\ensuremath{\Rightarrow}}
+\newcommand{\ra}{\ensuremath{\rightarrow}}
+\newcommand{\lra}{\ensuremath{\leftrightarrow}}
+\newcommand{\On}{\ensuremath{O(n)}\xspace}
+\newcommand{\Ologn}{\ensuremath{O(\log n)}\xspace}
+\newcommand{\Oone}{\ensuremath{O(1)}\xspace}
+
 
 
 % ****************************************************************************************************
@@ -142,8 +211,17 @@
 \newcommand{\tableheadline}[1]{\multicolumn{1}{c}{\spacedlowsmallcaps{#1}}}
 \newcommand{\myfloatalign}{\centering} % to be used with each float for alignment
 \usepackage{caption}
-\captionsetup{format=hang,font=small}
-\usepackage{subfig}  
+\usepackage{subfig} 
+
+%\captionsetup{format=hang,font=small}
+\DeclareCaptionLabelFormat{slsc}{\spacedlowsmallcaps{#1 #2}}
+\DeclareCaptionLabelSeparator{spacednewline}{\\[1ex]}
+\captionsetup[figure]{format=plain,labelsep=colon,labelfont=it,textfont=rm,font=small,singlelinecheck=true,position=bottom}
+\captionsetup[table]{format=plain,labelsep=colon,labelfont=it,textfont=rm,font=small,singlelinecheck=true,position=top}
+\captionsetup[SCfigure]{format=plain,labelsep=spacednewline,labelfont={rm,small},labelformat=slsc,textfont=rm,font=footnotesize,singlelinecheck=true,position=top}
+\captionsetup[SCtable]{format=plain,labelsep=spacednewline,labelfont={rm,small},labelformat=slsc,textfont=rm,font=footnotesize,singlelinecheck=true,position=top}
+
+
 % ****************************************************************************************************
 
 
@@ -214,7 +292,7 @@
 % ********************************************************************
 \hypersetup{%
     %draft,	% = no hyperlinking at all (useful in b/w printouts)
-    colorlinks=true, linktocpage=true, pdfstartpage=3, pdfstartview=FitV,%
+    colorlinks=false, linktocpage=false, pdfborder={0 0 0}, pdfstartpage=3, pdfstartview=FitV,%
     % uncomment the following line if you want to have black links (e.g., for printing)
     %colorlinks=false, linktocpage=false, pdfborder={0 0 0}, pdfstartpage=3, pdfstartview=FitV,% 
     breaklinks=true, pdfpagemode=UseNone, pageanchor=true, pdfpagemode=UseOutlines,%
@@ -229,6 +307,75 @@
     pdfcreator={pdfLaTeX},%
     pdfproducer={LaTeX with hyperref and classicthesis}%
 }   
+
+
+% no footnote resetting on chapter break
+\RequirePackage{chngcntr}
+\counterwithout*{footnote}{chapter}
+
+
+
+% my own commands
+\newcommand{\ed}[1]{\textbf{\color{red}#1}}
+\newcommand{\cn}{\ed{[CITATION NEEDED]}}
+\newcommand{\furl}[2]{\href{#2}{#1}\footnote{\url{#2}}}
+\newcommand{\slsc}[1]{\spacedlowsmallcaps{#1}}
+\newcommand{\sac}[1]{\spacedallcaps{#1}}
+\newcommand{\wpcite}[3]{\footnote{Quoted from \emph{Wikipedia, The Free Encyclopedia}, Lemma \enquote{#1}.\\\url{http://en.wikipedia.org/w/index.php?title=#2&oldid=#3}, accessed on January 15, 2012.}}
+\newcommand{\see}[1]{\marginnote{see \S~\ref{#1}}}
+\newcommand{\ssee}[1]{\marginnote{see \S\S~\ref{#1}}}
+
+\newcommand{\marginnote}[1]{\mbox{}\marginpar{#1}}
+\newcommand{\edm}[1]{\marginnote{\ed{#1}}}
+
+\renewcommand{\thefootnote}{\figureversion{osf,tab}\arabic{footnote}}
+
+
+% The placeins package provides the \FloatBarrier command.  This forces
+% LaTeX to place all of the floats before proceeding.  We'll use this to
+% keep the float (figure and table) numbers in sequence.
+\RequirePackage{placeins}
+
+%%
+% Margin float environment
+
+\newsavebox{\@tufte@margin@floatbox}
+\newenvironment{@tufte@margin@float}[2][-1.2ex]%
+  {\FloatBarrier% process all floats before this point so the figure/table numbers stay in order.
+  \begin{lrbox}{\@tufte@margin@floatbox}%
+  \begin{minipage}{\marginparwidth}%
+    \hbox{}\vspace*{#1}%
+    \captionsetup{type=#2}%
+    \def\@captype{#2}%
+    %\@tufte@marginfont%
+    %\@tufte@justification%
+    %\@tufte@margin@par%
+    \noindent\ignorespaces%
+  }
+  {\end{minipage}%
+  \end{lrbox}%
+  \marginpar{\usebox{\@tufte@margin@floatbox}}%
+  }
+
+
+%%
+% Margin figure environment
+
+\newenvironment{marginfigure}[1][-1.2ex]%
+  {\begin{@tufte@margin@float}[#1]{figure}}
+  {\end{@tufte@margin@float}}
+
+\newenvironment{margintable}[1][-1.2ex]%
+    {\begin{@tufte@margin@float}[#1]{table}}
+    {\end{@tufte@margin@float}}
+
+
+\PassOptionsToPackage{margincaption,outercaption,ragged,wide}{sidecap}
+ \RequirePackage{sidecap}
+ \sidecaptionvpos{figure}{t}
+ \sidecaptionvpos{table}{t}
+
+
 
 % ********************************************************************
 % Setup autoreferences
@@ -283,7 +430,9 @@
 % ********************************************************************
 % Last, but not least...
 % ********************************************************************
-\usepackage{classicthesis} 
+\usepackage{classicthesis}
+
+\edef\sidecaptionsep{\the\marginparsep}
 % ****************************************************************************************************
 
 
