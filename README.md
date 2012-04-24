@@ -3,8 +3,32 @@ classicthesis
 
 My modifications to classicthesis by André Miede
 
+For my thesis, I customized André's ClassicThesis to better match my taste.
+These are rather subtle modifications---of course the gorgeous overall look
+stays unmodified.
 
-Original README:
+However, since I did these customizations mainly for myself, I relied on a
+number of assumptions for my work environment, which might not necessarily 
+match yours.
+
+ * Since this was a Diploma thesis, the overall structure better supports such
+   smaller theses, as compared to larger PhD dissertations or other books. You
+   might need to re-enable some of the stuff I removed, e. g. dedication,
+   publications, or the "parts" structure.
+   
+ * All files are (should be) encoded in UTF-8. If you can, keep it this way.
+ 
+ * I've used pdflatex with the MinionPro package/fonts, together with biber and
+   biblatex for the bibliography. I suggest you do the same. I tried to make it
+   work with XeLaTeX to allow the use of other fonts, but I failed and
+   ultimately gave up. Maybe in this version, ClassicThesis is easier to adapt
+   to XeLaTeX.
+   
+
+If you have any questions, contact me at post@lars-feyerabend.de
+
+
+Original README by André Miede:
 ----------------
 
   A Classic Thesis Style
