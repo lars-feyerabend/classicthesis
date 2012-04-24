@@ -503,9 +503,9 @@
 	      \renewcommand{\cftfigleader}{\hspace{1.5em}}% 
 	      \renewcommand{\cftfigafterpnum}{\cftparfillskip}%
       }
-      \renewcommand{\cftfigpresnum}{\figurename~}%Fig.~}
+      %\renewcommand{\cftfigpresnum}{\figurename~}%Fig.~}
       \newlength{\figurelabelwidth}
-      \settowidth{\figurelabelwidth}{\cftfigpresnum~999}
+      \settowidth{\figurelabelwidth}{999} %\cftfigpresnum~
       \addtolength{\figurelabelwidth}{2.5em}
       \cftsetindents{figure}{0em}{\figurelabelwidth}
     % tables
@@ -516,9 +516,9 @@
       	\renewcommand{\cfttableader}{\hspace{1.5em}}% 
       	\renewcommand{\cfttabafterpnum}{\cftparfillskip}%   
       } 
-      \renewcommand{\cfttabpresnum}{\tablename~}%Tab.~}
+      %\renewcommand{\cfttabpresnum}{\tablename~}%Tab.~}
       \newlength{\tablelabelwidth}
-      \settowidth{\tablelabelwidth}{\cfttabpresnum~999}
+      \settowidth{\tablelabelwidth}{999} %\cfttabpresnum~
       \addtolength{\tablelabelwidth}{2.5em}
       %\cftsetindents{table}{0em}{\tablelabelwidth}
       \cftsetindents{table}{0em}{\figurelabelwidth}
