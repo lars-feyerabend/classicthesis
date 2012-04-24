@@ -27,6 +27,10 @@
 % listings floatperchapter subfig
 % ********************************************************************
 
+\PassOptionsToPackage{utf8}{inputenc}	% latin9 (ISO-8859-9) = latin1+"Euro sign"
+ \usepackage{inputenc}		
+
+
 % ********************************************************************
 % Triggers for this config
 % ******************************************************************** 
@@ -42,7 +46,7 @@
 \newcommand{\myTitle}{A Classic Thesis Style\xspace}
 \newcommand{\mySubtitle}{An Homage to The Elements of Typographic Style\xspace}
 \newcommand{\myDegree}{Master Thesis\xspace}
-\newcommand{\myName}{Andr\'e Miede\xspace}
+\newcommand{\myName}{André Miede\xspace}
 \newcommand{\myProf}{Put name here\xspace}
 \newcommand{\myOtherProf}{Put name here\xspace}
 \newcommand{\mySupervisor}{Put name here\xspace}
@@ -51,6 +55,7 @@
 \newcommand{\myUni}{Put data here\xspace}
 \newcommand{\myLocation}{Darmstadt\xspace}
 \newcommand{\myTime}{December 2011\xspace}
+\newcommand{\mySubmDate}{December 1, 2011\xspace}
 \newcommand{\myVersion}{version 4.0\xspace}
 
 % ********************************************************************
@@ -59,10 +64,7 @@
 \newcounter{dummy} % necessary for correct hyperlinks (to index, bib, etc.)
 \newlength{\abcd} % for ab..z string length calculation
 \providecommand{\mLyX}{L\kern-.1667em\lower.25em\hbox{Y}\kern-.125emX\@}
-\newcommand{\ie}{i.\,e.}
-\newcommand{\Ie}{I.\,e.}
-\newcommand{\eg}{e.\,g.}
-\newcommand{\Eg}{E.\,g.} 
+
 % ****************************************************************************************************
 
 
@@ -72,8 +74,6 @@
 % ******************************************************************** 
 % Packages with options that might require adjustments
 % ******************************************************************** 
-\PassOptionsToPackage{utf8}{inputenc}	% latin9 (ISO-8859-9) = latin1+"Euro sign"
- \usepackage{inputenc}				
 
 \PassOptionsToPackage{american}{babel}   % change this to your language(s)
 % Spanish languages need extra options in order to work with this template
@@ -170,7 +170,6 @@
 % ********************************************************************
 % Commands
 % ********************************************************************
-\newcounter{dummy} % necessary for correct hyperlinks (to index, bib, etc.)
 \newcommand{\longpage}{\enlargethispage{3\baselineskip}}
 \newcommand{\medpage}{\enlargethispage{2\baselineskip}}
 \newcommand{\shortpage}{\enlargethispage{\baselineskip}}
@@ -192,7 +191,6 @@
 \newcommand{\term}[1]{\emph{#1}}
 \newcommand{\role}[1]{#1} %textsc
 \newcommand{\cauthor}[1]{\relax}
-\newcommand{\tableheadline}[1]{\multicolumn{1}{c}{\spacedlowsmallcaps{#1}}}
 % ********************************************************************
 \newcommand{\RA}{\ensuremath{\Rightarrow}}
 \newcommand{\ra}{\ensuremath{\rightarrow}}
@@ -231,10 +229,10 @@
 \usepackage{listings} 
 %\lstset{emph={trueIndex,root},emphstyle=\color{BlueViolet}}%\underbar} % for special keywords
 \lstset{language=[LaTeX]Tex,%C++,
-    keywordstyle=\color{RoyalBlue},%\bfseries,
+    %keywordstyle=,%\bfseries,
     basicstyle=\small\ttfamily,
     %identifierstyle=\color{NavyBlue},
-    commentstyle=\color{Green}\ttfamily,
+    commentstyle=\ttfamily,
     stringstyle=\rmfamily,
     numbers=none,%left,%
     numberstyle=\scriptsize,%\tiny
@@ -246,7 +244,42 @@
     frame=single,
     belowcaptionskip=.75\baselineskip
     %frame=L
-} 
+}
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  keywordstyle=\ttfamily,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\ttfamily,
+  identifierstyle=\ttfamily,
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\itshape\ttfamily,
+  stringstyle=\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+\lstset{language=JavaScript,%C++,
+    keywordstyle=\ttfamily,
+    basicstyle=\small\ttfamily,
+    %identifierstyle=\color{NavyBlue},
+    commentstyle=\ttfamily\itshape,
+    stringstyle=\ttfamily,
+    %numbers=left,%
+    %numberstyle=\scriptsize,%\tiny
+    %stepnumber=1,
+    %numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    % frameround=ftff,
+    frame=none,
+    belowcaptionskip=.75\baselineskip,
+    numberbychapter=false
+    captionpos=t,
+    xleftmargin=\leftmargin,
+    xrightmargin=\rightmargin
+    %frame=L
+}
 % ****************************************************************************************************    		   
 
 
@@ -339,6 +372,7 @@
 %%
 % Margin float environment
 
+\makeatletter
 \newsavebox{\@tufte@margin@floatbox}
 \newenvironment{@tufte@margin@float}[2][-1.2ex]%
   {\FloatBarrier% process all floats before this point so the figure/table numbers stay in order.
@@ -368,7 +402,7 @@
 \newenvironment{margintable}[1][-1.2ex]%
     {\begin{@tufte@margin@float}[#1]{table}}
     {\end{@tufte@margin@float}}
-
+\makeatother
 
 \PassOptionsToPackage{margincaption,outercaption,ragged,wide}{sidecap}
  \RequirePackage{sidecap}
